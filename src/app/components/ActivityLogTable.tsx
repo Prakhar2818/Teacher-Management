@@ -26,11 +26,11 @@ const ActivityLogTable: React.FC = () => {
 
   return (
     <div className="mt-10">
-      <h3 className="text-xl font-bold mb-4">Activity Log</h3>
+      <h3 className="text-xl font-bold mb-4" style={{ color: 'var(--heading)' }}>Activity Log</h3>
       <div className="overflow-x-auto">
-        <table className="min-w-full bg-white rounded shadow text-sm">
+        <table className="min-w-full rounded shadow text-sm" style={{ background: 'var(--card-bg)' }}>
           <thead>
-            <tr className="bg-gray-100 text-gray-700">
+            <tr style={{ background: 'var(--table-header-bg)', color: 'var(--table-header-text)' }}>
               <th className="py-2 px-4">Time</th>
               <th className="py-2 px-4">Action</th>
               <th className="py-2 px-4">Teacher</th>
@@ -39,10 +39,10 @@ const ActivityLogTable: React.FC = () => {
           </thead>
           <tbody>
             {activityLog.length === 0 ? (
-              <tr><td colSpan={4} className="text-center py-4 text-gray-400">No activity yet.</td></tr>
+              <tr><td colSpan={4} className="text-center py-4" style={{ color: 'var(--muted)' }}>No activity yet.</td></tr>
             ) : (
               activityLog.map((log, idx) => (
-                <tr key={idx} className="border-t">
+                <tr key={idx} style={{ borderTop: '1px solid var(--card-border)' }}>
                   <td className="py-2 px-4 whitespace-nowrap">{log.timestamp}</td>
                   <td className="py-2 px-4">{log.action}</td>
                   <td className="py-2 px-4">{log.teacherName || "-"}</td>

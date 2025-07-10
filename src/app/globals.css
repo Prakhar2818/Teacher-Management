@@ -1,8 +1,23 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #eaf1fb;
+  --foreground: #1e293b;
+  --primary: #2563eb;
+  --primary-dark: #1e3a8a;
+  --primary-light: #3b82f6;
+  --sidebar-bg: linear-gradient(to bottom, #0a174e, #1e3a8a 80%, #2563eb);
+  --sidebar-text: #fff;
+  --card-bg: #f8fafc;
+  --card-border: #dbeafe;
+  --danger: #e11d48;
+  --topbar-bg: linear-gradient(90deg, #2563eb 0%, #1e3a8a 100%);
+  --topbar-text: #fff;
+  --heading: #2563eb;
+  --heading-light: #3b82f6;
+  --table-header-bg: #dbeafe;
+  --table-header-text: #1e293b;
+  --muted: #64748b;
 }
 
 @theme inline {

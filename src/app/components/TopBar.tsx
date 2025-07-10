@@ -1,11 +1,15 @@
 export default function TopBar({ onMenuClick }: { onMenuClick?: () => void }) {
   return (
-    <header className="w-full h-14 bg-red-600 flex items-center justify-between px-6 shadow text-white">
+    <header
+      className="w-full h-14 flex items-center justify-between px-6 shadow"
+      style={{ background: 'var(--topbar-bg)', color: 'var(--topbar-text)' }}
+    >
       <div className="flex items-center gap-3">
         {/* Mobile menu icon */}
         {onMenuClick && (
           <button
-            className="md:hidden mr-2 text-white focus:outline-none"
+            className="md:hidden mr-2 focus:outline-none"
+            style={{ color: 'var(--topbar-text)' }}
             onClick={onMenuClick}
             aria-label="Open sidebar"
           >

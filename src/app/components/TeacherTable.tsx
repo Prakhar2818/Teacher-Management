@@ -20,11 +20,11 @@ const TeacherTable: React.FC = () => {
 
   return (
     <div className="mt-10">
-      <h3 className="text-xl font-bold mb-4">All Teachers</h3>
+      <h3 className="text-xl font-bold mb-4" style={{ color: 'var(--heading)' }}>All Teachers</h3>
       <div className="overflow-x-auto">
-        <table className="min-w-full bg-white rounded shadow text-sm">
+        <table className="min-w-full rounded shadow text-sm" style={{ background: 'var(--card-bg)' }}>
           <thead>
-            <tr className="bg-gray-100 text-gray-700">
+            <tr style={{ background: 'var(--table-header-bg)', color: 'var(--table-header-text)' }}>
               <th className="py-2 px-4">ID</th>
               <th className="py-2 px-4">Name</th>
               <th className="py-2 px-4">Email</th>
@@ -34,10 +34,10 @@ const TeacherTable: React.FC = () => {
           </thead>
           <tbody>
             {teachers.length === 0 ? (
-              <tr><td colSpan={5} className="text-center py-4 text-gray-400">No teachers found.</td></tr>
+              <tr><td colSpan={5} className="text-center py-4" style={{ color: 'var(--muted)' }}>No teachers found.</td></tr>
             ) : (
               teachers.map((teacher) => (
-                <tr key={teacher.id} className="border-t">
+                <tr key={teacher.id} style={{ borderTop: '1px solid var(--card-border)' }}>
                   <td className="py-2 px-4 whitespace-nowrap">{teacher.id}</td>
                   <td className="py-2 px-4">{teacher.name}</td>
                   <td className="py-2 px-4">{teacher.email}</td>

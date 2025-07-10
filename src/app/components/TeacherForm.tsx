@@ -84,11 +84,11 @@ export default function TeacherForm({ initialData, onSubmit, loading }: Props) {
         className="space-y-5 text-base bg-white rounded-lg shadow-lg p-6 max-w-lg mx-auto border border-gray-200"
         style={{ boxShadow: '0 4px 24px 0 rgba(34,197,94,0.08)' }}
       >
-        <h2 className="text-2xl font-bold text-center text-green-700 mb-4 tracking-tight">
+        <h2 className="text-2xl font-bold text-center mb-4 tracking-tight" style={{ color: 'var(--heading-light)' }}>
           {initialData ? "Edit Teacher" : "Add New Teacher"}
         </h2>
         <div>
-          <label className="block text-gray-700 font-medium mb-1">Name</label>
+          <label className="block font-medium mb-1" style={{ color: 'var(--foreground)' }}>Name</label>
           <input
             {...register("name", { required: true })}
             placeholder="Name"
@@ -99,7 +99,7 @@ export default function TeacherForm({ initialData, onSubmit, loading }: Props) {
           )}
         </div>
         <div>
-          <label className="block text-gray-700 font-medium mb-1">Email</label>
+          <label className="block font-medium mb-1" style={{ color: 'var(--foreground)' }}>Email</label>
           <input
             {...register("email", { required: true, pattern: /.+@.+\..+/ })}
             placeholder="Email"
@@ -110,7 +110,7 @@ export default function TeacherForm({ initialData, onSubmit, loading }: Props) {
           )}
         </div>
         <div>
-          <label className="block text-gray-700 font-medium mb-1">Subject</label>
+          <label className="block font-medium mb-1" style={{ color: 'var(--foreground)' }}>Subject</label>
           <input
             {...register("subject", { required: true })}
             placeholder="Subject"
@@ -121,7 +121,7 @@ export default function TeacherForm({ initialData, onSubmit, loading }: Props) {
           )}
         </div>
         <div>
-          <label className="block text-gray-700 font-medium mb-1">Experience (years)</label>
+          <label className="block font-medium mb-1" style={{ color: 'var(--foreground)' }}>Experience (years)</label>
           <input
             type="number"
             {...register("experience", { required: true, min: 1 })}
@@ -134,14 +134,15 @@ export default function TeacherForm({ initialData, onSubmit, loading }: Props) {
         </div>
         <button
           type="submit"
-          className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded w-full font-semibold transition disabled:opacity-60 shadow"
+          className="px-4 py-2 rounded w-full font-semibold transition disabled:opacity-60 shadow"
+          style={{ background: 'var(--primary)', color: '#fff' }}
           disabled={loading || showLoader}
         >
           {loading ? "Saving..." : initialData ? "Update" : "Add"} Teacher
         </button>
       </form>
       {showToast && (
-        <div className="fixed bottom-4 left-1/2 transform -translate-x-1/2 bg-green-600 text-white px-6 py-2 rounded shadow-lg z-50 text-base animate-fade-in">
+        <div className="fixed bottom-4 left-1/2 transform -translate-x-1/2 px-6 py-2 rounded shadow-lg z-50 text-base animate-fade-in" style={{ background: 'var(--primary)', color: '#fff' }}>
           Form submitted successfully!
         </div>
       )}
