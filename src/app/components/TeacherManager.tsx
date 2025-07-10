@@ -16,6 +16,19 @@ function saveTeachers(teachers: Teacher[]) {
   localStorage.setItem(TEACHERS_KEY, JSON.stringify(teachers));
 }
 
+function logActivity(action: string, teacherName?: string, details?: string) {
+  if (typeof window === "undefined") return;
+  const log = JSON.parse(localStorage.getItem("activityLog") || "[]");
+  log.unshift({
+    timestamp: new Date().toLocaleString(),
+    action,
+    teacherName,
+    details,
+  });
+  localStorage.setItem("activityLog", JSON.stringify(log));
+  window.dispatchEvent(new Event("storage")); // Force update for listeners
+}
+
 export default function TeacherManager() {
   const [teachers, setTeachers] = useState<Teacher[]>(loadTeachers());
 
@@ -23,6 +36,7 @@ export default function TeacherManager() {
     const updated = [...teachers, teacher];
     setTeachers(updated);
     saveTeachers(updated);
+    logActivity("Added", teacher.name, "Teacher added");
   };
 
   return (

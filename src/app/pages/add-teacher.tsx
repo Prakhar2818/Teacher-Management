@@ -22,6 +22,15 @@ export default function AddTeacherPage() {
   const handleAddTeacher = (teacher: Teacher) => {
     const teachers = loadTeachers();
     saveTeachers([...teachers, teacher]);
+    // Log activity
+    const log = JSON.parse(localStorage.getItem("activityLog") || "[]");
+    log.unshift({
+      timestamp: new Date().toLocaleString(),
+      action: "Added",
+      teacherName: teacher.name,
+      details: "Teacher registered",
+    });
+    localStorage.setItem("activityLog", JSON.stringify(log));
     router.push("/dashboard");
   };
 
