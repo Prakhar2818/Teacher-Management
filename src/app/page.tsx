@@ -3,8 +3,6 @@ import React, { useState, useEffect } from "react";
 import TeacherCard from "./components/TeacherCard";
 import { Teacher } from "./types/types";
 import { loadTeachers } from "./components/TeacherManager";
-import ActivityLogTable from "./components/ActivityLogTable";
-import TeacherTable from "./components/TeacherTable";
 import TeacherForm from "./components/TeacherForm";
 
 function logActivity(action: string, teacherName?: string, details?: string) {
@@ -21,15 +19,23 @@ function logActivity(action: string, teacherName?: string, details?: string) {
 }
 
 export default function Home() {
-  const [teachers, setTeachers] = useState<Teacher[]>(loadTeachers());
+  const [mounted, setMounted] = useState(false);
+  const [teachers, setTeachers] = useState<Teacher[]>([]);
   const [editingTeacher, setEditingTeacher] = useState<Teacher | null>(null);
 
   useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!mounted) return;
     setTeachers(loadTeachers());
     const sync = () => setTeachers(loadTeachers());
     window.addEventListener("storage", sync);
     return () => window.removeEventListener("storage", sync);
-  }, []);
+  }, [mounted]);
+
+  if (!mounted) return null;
 
   const handleEdit = (teacher: Teacher) => {
     setEditingTeacher(teacher);

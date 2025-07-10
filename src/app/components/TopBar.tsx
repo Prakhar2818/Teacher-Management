@@ -1,7 +1,21 @@
-export default function TopBar() {
+export default function TopBar({ onMenuClick }: { onMenuClick?: () => void }) {
   return (
     <header className="w-full h-14 bg-red-600 flex items-center justify-between px-6 shadow text-white">
-      <div className="font-bold text-lg tracking-wide">Teacher Management</div>
+      <div className="flex items-center gap-3">
+        {/* Mobile menu icon */}
+        {onMenuClick && (
+          <button
+            className="md:hidden mr-2 text-white focus:outline-none"
+            onClick={onMenuClick}
+            aria-label="Open sidebar"
+          >
+            <svg className="w-7 h-7" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        )}
+        <div className="font-bold text-lg tracking-wide">Teacher Management</div>
+      </div>
       <div className="flex items-center gap-4">
         {/* Placeholder for user icons */}
         <span className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">

@@ -31,19 +31,41 @@ function logActivity(action: string, teacherName?: string, details?: string) {
 
 export default function TeacherManager() {
   const [teachers, setTeachers] = useState<Teacher[]>(loadTeachers());
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState("");
+  const [error, setError] = useState("");
 
-  const handleAddTeacher = (teacher: Teacher) => {
-    const updated = [...teachers, teacher];
-    setTeachers(updated);
-    saveTeachers(updated);
-    logActivity("Added", teacher.name, "Teacher added");
+  const handleAddTeacher = async (teacher: Teacher) => {
+    setLoading(true);
+    setSuccess("");
+    setError("");
+    try {
+      // Simulate async
+      await new Promise((res) => setTimeout(res, 500));
+      if (!teacher.name || !teacher.email || !teacher.subject || !teacher.experience) {
+        setError("All fields are required.");
+        setLoading(false);
+        return;
+      }
+      const updated = [...teachers, teacher];
+      setTeachers(updated);
+      saveTeachers(updated);
+      logActivity("Added", teacher.name, "Teacher added");
+      setSuccess("Teacher added successfully!");
+    } catch (e) {
+      setError("Failed to add teacher. Try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
-    <div className="mx-auto mt-8 md-flex">
-      <div>
-        <h2 className="text-2xl font-bold mb-4">Add Teacher</h2>
-        <TeacherForm onSubmit={handleAddTeacher} />
+    <div className="mx-auto mt-8 md-flex px-2 sm:px-4">
+      <div className="max-w-md w-full mx-auto bg-white rounded shadow p-4 sm:p-6">
+        <h2 className="text-2xl font-bold mb-4 text-center">Add Teacher</h2>
+        {error && <div className="mb-2 text-red-600 text-sm">{error}</div>}
+        {success && <div className="mb-2 text-green-600 text-sm">{success}</div>}
+        <TeacherForm onSubmit={handleAddTeacher} loading={loading} />
       </div>
     </div>
   );
