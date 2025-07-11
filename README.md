@@ -4,8 +4,8 @@ A simple and modern web app to manage teacher records, built with [Next.js](http
 
 ## Live Demo
 
-- **Live Site:** [Add your deployed site URL here]
-- **Demo Video:** [Add your Loom or YouTube video URL here]
+- **Live Site:** https://teachermanagementdemo.netlify.app/
+- **Demo Video:** https://www.loom.com/share/bae09ede9c694238b47085112fa9c89b?sid=2e85ae53-375d-4ade-94e1-2ffb01a1d45b
 
 ## Features
 
