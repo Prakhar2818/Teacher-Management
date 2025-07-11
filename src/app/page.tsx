@@ -55,7 +55,6 @@ export default function Home() {
       updated = teachers.map((t) =>
         t.id === editingTeacher.id ? { ...data, id: editingTeacher.id } : t
       );
-      logActivity("Edited", data.name, "Teacher details edited");
     } else {
       updated = [...teachers, data];
       logActivity("Added", data.name, "Teacher added");

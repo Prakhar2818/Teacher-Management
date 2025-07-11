@@ -62,15 +62,25 @@ export default function TeacherForm({ initialData, onSubmit, loading }: Props) {
   const submit = (data: Teacher) => {
     const teacherId = initialData?.id || crypto.randomUUID();
     onSubmit({ ...data, id: teacherId });
-    // Add activity log with unique id
     if (typeof window !== "undefined") {
-      const log = {
-        id: crypto.randomUUID(),
-        timestamp: new Date().toLocaleString(),
-        action: "Teacher Added",
-        teacherName: data.name,
-        details: `A new teacher Added.`,
-      };
+      let log;
+      if (!initialData) {
+        log = {
+          id: crypto.randomUUID(),
+          timestamp: new Date().toLocaleString(),
+          action: "Teacher Added",
+          teacherName: data.name,
+          details: `A new teacher was added.`,
+        };
+      } else {
+        log = {
+          id: crypto.randomUUID(),
+          timestamp: new Date().toLocaleString(),
+          action: "Teacher Edited",
+          teacherName: data.name,
+          details: `Teacher details were updated.`,
+        };
+      }
       const logs = JSON.parse(localStorage.getItem("activityLog") || "[]");
       logs.unshift(log);
       localStorage.setItem("activityLog", JSON.stringify(logs));
