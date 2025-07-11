@@ -60,7 +60,22 @@ export default function TeacherForm({ initialData, onSubmit, loading }: Props) {
   });
 
   const submit = (data: Teacher) => {
-    onSubmit({ ...data, id: initialData?.id || crypto.randomUUID() });
+    const teacherId = initialData?.id || crypto.randomUUID();
+    onSubmit({ ...data, id: teacherId });
+    // Add activity log with unique id
+    if (typeof window !== "undefined") {
+      const log = {
+        id: crypto.randomUUID(),
+        timestamp: new Date().toLocaleString(),
+        action: "Teacher Added",
+        teacherName: data.name,
+        details: `A new teacher Added.`,
+      };
+      const logs = JSON.parse(localStorage.getItem("activityLog") || "[]");
+      logs.unshift(log);
+      localStorage.setItem("activityLog", JSON.stringify(logs));
+      window.dispatchEvent(new Event("storage"));
+    }
     reset();
     setShowToast(true);
     setShowLoader(true);
